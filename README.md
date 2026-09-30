@@ -155,7 +155,7 @@ backend/                   API Express
 | **Claude** (Anthropic) | Trợ lý AI khi lập trình: viết và review code, tìm lỗi, viết test, kiểm tra giao diện |
 | **Codex** (OpenAI) | Trợ lý AI khi lập trình: phát triển và tối ưu một số tính năng (cổng cư dân, tải trước dữ liệu) |
 | **Cloudflare** | Chạy web (Workers), chạy backend bằng Docker (Containers), lưu ảnh và bản sao lưu (R2), tên miền và bảo mật |
-| **MongoDB Atlas** | Cơ sở dữ liệu trên mây |
+| **MongoDB Atlas** | Cơ sở dữ liệu trên đám mây |
 | **GitHub** | Quản lý mã nguồn |
 | **Google Search Console** | Đưa web lên Google, theo dõi lập chỉ mục |
 | **Telegram Bot** | Gửi thông báo yêu cầu mới cho quản lý |
