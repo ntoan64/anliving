@@ -68,7 +68,11 @@ flowchart LR
 
 ## Công cụ mình dùng
 
-Giao diện mình phác ý tưởng bằng Google Stitch trước rồi mới code. Khi code mình dùng Claude và Codex để viết nhanh hơn, review và tìm lỗi. AI giúp mình làm nhanh, còn làm tính năng gì, thử lại trên web thật và sửa khi chủ nhà báo lỗi là việc của mình.
+Mình thường phác thảo ý tưởng giao diện bằng Google Stitch trước để hình dung bố cục và trải nghiệm tổng thể, sau đó mới bắt đầu code.
+
+Trong quá trình phát triển, mình sử dụng Claude và Codex để hỗ trợ viết code nhanh hơn, review logic và tìm lỗi. AI giúp mình rút ngắn thời gian xử lý, nhưng việc quyết định nên làm tính năng nào, kiểm tra lại trên website thực tế và chỉnh sửa dựa trên phản hồi của chủ nhà vẫn là phần mình trực tiếp thực hiện.
+
+Với mình, AI là công cụ hỗ trợ để làm nhanh và hiệu quả hơn, còn chất lượng sản phẩm cuối cùng vẫn phụ thuộc vào cách mình kiểm tra, đánh giá và cải thiện nó qua quá trình sử dụng thực tế.
 
 ---
 
