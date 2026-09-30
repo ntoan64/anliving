@@ -1,10 +1,10 @@
 # AnLiving
 
-Web cho thuê phòng mình làm cho người nhà. Nhà mình có mấy khu loft studio, studio, shophouse và văn phòng ở TP.HCM. Trước giờ khách hỏi phòng qua Zalo, báo hỏng cũng qua Zalo, nên thông tin hay bị trôi. Mình làm web này để gom hết về một chỗ, và giờ nó đang chạy thật tại [anlivingspaces.com](https://anlivingspaces.com).
+Web mình làm cho AnLiving, một bên cho thuê loft studio, studio, shophouse và văn phòng ở TP.HCM. Trước giờ khách hỏi phòng qua Zalo, cư dân báo hỏng cũng qua Zalo, nên thông tin hay bị trôi. Mình làm web này để gom hết về một chỗ, và giờ nó đang chạy thật tại [anlivingspaces.com](https://anlivingspaces.com).
 
-Mình làm từ lúc ngồi nghe người nhà kể cần gì, phác giao diện, viết frontend, backend, cho tới đưa lên mạng và sửa lỗi khi có người dùng thật. Tới giờ là hơn 2 tuần.
+Mình làm từ lúc ngồi nghe chủ nhà kể cần gì, phác giao diện, viết frontend, backend, cho tới đưa lên mạng và sửa lỗi khi có người dùng thật. Tới giờ là hơn 2 tuần.
 
-> Repo này mình để công khai để giới thiệu dự án. Code thật nằm ở repo riêng vì web đang chạy cho việc kinh doanh của gia đình. Ai cần xem code thì nhắn mình, mình mở quyền hoặc demo trực tiếp.
+> Repo này mình để công khai để giới thiệu dự án. Code thật nằm ở repo riêng vì web đang chạy cho việc kinh doanh thật. Ai cần xem code thì nhắn mình, mình mở quyền hoặc demo trực tiếp.
 
 ![Trang chủ](docs/anh/trang-chu.jpg)
 
@@ -12,7 +12,7 @@ Mình làm từ lúc ngồi nghe người nhà kể cần gì, phác giao diện
 
 Có 3 phần cho 3 kiểu người dùng.
 
-**Khách tìm phòng** xem các khu, lọc phòng theo giá, diện tích, số người ở và tiện ích. Mỗi phòng có một link riêng để gửi qua Zalo hay Facebook. Ai muốn thuê thì để lại số, người nhà mình gọi lại.
+**Khách tìm phòng** xem các khu, lọc phòng theo giá, diện tích, số người ở và tiện ích. Mỗi phòng có một link riêng để gửi qua Zalo hay Facebook. Ai muốn thuê thì để lại số, bên cho thuê sẽ gọi lại.
 
 ![Danh sách phòng](docs/anh/danh-sach-phong.jpg)
 
@@ -40,11 +40,11 @@ Cư dân chủ yếu dùng điện thoại nên phần này mình làm cho màn 
 
 **Giới hạn đăng nhập sai bị qua mặt.** Mình có giới hạn 5 lần đăng nhập sai. Khi tự test lại, mình thấy chỉ cần gửi kèm một header giả IP là giới hạn này vô dụng. Mình sửa ở tầng Worker của Cloudflare, lấy IP thật do Cloudflare cung cấp chứ không tin header từ trình duyệt.
 
-**Người nhà cần đúng một chỗ để quản lý.** Bản đầu mình tách phần cư dân và phần hỗ trợ ra nhiều menu, người nhà thấy rối. Mình gộp lại thành một trang có 2 tab, việc gì cần làm thì hiện ngay ở dashboard.
+**Chủ nhà cần đúng một chỗ để quản lý.** Bản đầu mình tách phần cư dân và phần hỗ trợ ra nhiều menu, chủ nhà thấy rối. Mình gộp lại thành một trang có 2 tab, việc gì cần làm thì hiện ngay ở dashboard.
 
 **Google hiện icon quả địa cầu thay vì logo.** Hóa ra đường dẫn `/favicon.ico` trả về trang HTML chứ không phải ảnh. Mình làm lại bộ favicon, thêm sitemap, tiêu đề và ảnh chia sẻ cho từng trang, giờ search "anlivingspaces" là ra đúng web.
 
-**Báo tin mà không tốn tiền.** Người nhà không muốn trả thêm phí hằng tháng cho việc nhắn tin, nên mình dùng bot Telegram (miễn phí) để báo yêu cầu mới cho người quản lý.
+**Báo tin mà không tốn tiền.** Chủ nhà không muốn trả thêm phí hằng tháng cho việc nhắn tin, nên mình dùng bot Telegram (miễn phí) để báo yêu cầu mới cho người quản lý.
 
 ## Công nghệ
 
@@ -68,7 +68,7 @@ flowchart LR
 
 ## Công cụ mình dùng
 
-Giao diện mình phác ý tưởng bằng Google Stitch trước rồi mới code. Khi code mình dùng Claude và Codex để viết nhanh hơn, review và tìm lỗi. AI giúp mình làm nhanh, còn làm tính năng gì, thử lại trên web thật và sửa khi người nhà báo lỗi là việc của mình.
+Giao diện mình phác ý tưởng bằng Google Stitch trước rồi mới code. Khi code mình dùng Claude và Codex để viết nhanh hơn, review và tìm lỗi. AI giúp mình làm nhanh, còn làm tính năng gì, thử lại trên web thật và sửa khi chủ nhà báo lỗi là việc của mình.
 
 ---
 
