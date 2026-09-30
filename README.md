@@ -1,163 +1,75 @@
-# AnLiving — Website cho thuê phòng & cổng cư dân
+# AnLiving
 
-**Nguyễn Thanh Toàn** · [GitHub @ntoan64](https://github.com/ntoan64)
+Web cho thuê phòng mình làm cho người nhà. Nhà mình có mấy khu loft studio, studio, shophouse và văn phòng ở TP.HCM. Trước giờ khách hỏi phòng qua Zalo, báo hỏng cũng qua Zalo, nên thông tin hay bị trôi. Mình làm web này để gom hết về một chỗ, và giờ nó đang chạy thật tại [anlivingspaces.com](https://anlivingspaces.com).
 
-Website **đang vận hành thật** cho AnLiving, doanh nghiệp cho thuê loft studio, studio, shophouse và văn phòng tại TP.HCM. Tôi làm một mình, từ trao đổi nhu cầu với chủ nhà, thiết kế giao diện, lập trình frontend và backend, đến triển khai và vận hành.
+Mình làm từ lúc ngồi nghe người nhà kể cần gì, phác giao diện, viết frontend, backend, cho tới đưa lên mạng và sửa lỗi khi có người dùng thật. Tới giờ là hơn 2 tuần.
 
-**Xem web thật:** [anlivingspaces.com](https://anlivingspaces.com)
-
-> 🔒 Repo này chỉ giới thiệu dự án. Mã nguồn để riêng tư vì là hệ thống của doanh nghiệp đang vận hành — mình sẵn sàng demo hoặc chia sẻ code khi được yêu cầu.
-
-`React 19` `Node.js / Express 5` `MongoDB` `REST API` `JWT` `Docker` `Cloudflare Workers · Containers · R2` `Playwright`
-
----
-
-## Tôi đã làm gì trong dự án
-
-| Việc | Chi tiết |
-|---|---|
-| **Phân tích nhu cầu** | Làm việc trực tiếp với chủ nhà, chia hệ thống thành 3 phần cho 3 nhóm người dùng: khách tìm phòng, quản lý, cư dân |
-| **Thiết kế giao diện** | Lên ý tưởng và phác thảo giao diện với **Google Stitch**, sau đó tự hoàn thiện (tông xanh rêu + kem, font Newsreader / Manrope), hệ thống nút và bố cục ưu tiên điện thoại, có thanh điều hướng dưới màn hình |
-| **Frontend** | React 19 + React Router: khoảng 20 trang, lazy loading theo trang, cache dữ liệu, tải trước khi rê chuột để chuyển trang gần như tức thì |
-| **Backend** | REST API bằng Express: 3 nhóm quyền (công khai / quản lý / cư dân), 9 model Mongoose, middleware xác thực và giới hạn tần suất |
-| **Bảo mật** | JWT, cookie HttpOnly, bcrypt, chống dò mật khẩu, chống giả IP, CSP/HSTS, chống sửa đè đồng thời |
-| **Triển khai & vận hành** | Đóng gói backend bằng Docker, chạy trên Cloudflare; ảnh lưu R2; sao lưu database tự động mỗi ngày; thông báo Telegram cho quản lý |
-| **SEO & pháp lý** | Tiêu đề và ảnh chia sẻ riêng từng trang, sitemap tự sinh, dữ liệu doanh nghiệp cho Google; Chính sách bảo mật theo Nghị định 13/2023, ghi nhận đồng ý của người dùng |
-| **Kiểm thử** | 23 test API tự động (`node:test`, database tạm trong bộ nhớ) + test trình duyệt bằng Playwright |
-
----
-
-## Tham quan giao diện & chức năng
-
-### 1. Trang công khai — dành cho khách tìm phòng
+> Repo này mình để công khai để giới thiệu dự án. Code thật nằm ở repo riêng vì web đang chạy cho việc kinh doanh của gia đình. Ai cần xem code thì nhắn mình, mình mở quyền hoặc demo trực tiếp.
 
 ![Trang chủ](docs/anh/trang-chu.jpg)
 
-**Trang chủ.** Ảnh lớn kèm ô tìm nhanh theo khu và tình trạng phòng; banner số liệu chạy ngang; thẻ các khu nổi bật; bản đồ vị trí và tiện ích xung quanh từng khu.
+## Web gồm những gì
+
+Có 3 phần cho 3 kiểu người dùng.
+
+**Khách tìm phòng** xem các khu, lọc phòng theo giá, diện tích, số người ở và tiện ích. Mỗi phòng có một link riêng để gửi qua Zalo hay Facebook. Ai muốn thuê thì để lại số, người nhà mình gọi lại.
 
 ![Danh sách phòng](docs/anh/danh-sach-phong.jpg)
 
-**Danh sách phòng + bộ lọc.** Lọc theo khu, tình trạng, mức giá, diện tích, số người ở và tiện ích (danh sách tiện ích lấy tự động từ dữ liệu phòng). Mặc định xếp phòng còn trống lên đầu, phòng chưa có giá xuống cuối. Thanh tóm tắt cho biết ngay bao nhiêu phòng còn / sắp có / đã thuê.
-
-<table>
-<tr>
-<td width="36%"><img src="docs/anh/chi-tiet-phong-mobile.jpg" alt="Chi tiết phòng trên điện thoại"></td>
-<td>
-
-**Chi tiết từng phòng** (ảnh chụp trên điện thoại). Mỗi phòng có đường dẫn riêng để chia sẻ qua Zalo/Facebook, gallery ảnh vuốt được, giá, diện tích, tiện ích, thiết bị an toàn PCCC và các phòng khác cùng khu.
-
-Trên điện thoại có **thanh điều hướng dưới màn hình** và **nút liên hệ nổi** mở ra Zalo, Messenger, gọi điện hoặc để lại số.
-
-</td>
-</tr>
-</table>
-
-![Form gọi lại](docs/anh/form-goi-lai.jpg)
-
-**Để lại số để được gọi lại.** Form ngắn: danh xưng, họ tên, số điện thoại. Có ô đồng ý chính sách bắt buộc, chống spam bằng giới hạn tần suất và ô bẫy bot. Yêu cầu hiện ngay trong trang quản lý.
-
-### 2. Trang quản lý — dành cho chủ nhà
+**Người quản lý** vào trang admin sẽ thấy ngay việc cần làm trong ngày: khách nào đang chờ gọi lại, phòng nào thiếu ảnh hay thiếu giá. Có sơ đồ phòng theo từng khu, bấm vào phòng là đổi trạng thái luôn.
 
 ![Dashboard](docs/anh/admin-dashboard.jpg)
 
-**Dashboard.** Số liệu nhanh về khu và phòng, cùng khung **"Việc cần làm"** tự nhắc: khách đang chờ gọi lại, yêu cầu cư dân chưa xem, phòng "Sắp có" chưa có ngày, phòng thiếu ảnh hoặc giá.
-
 ![Sơ đồ phòng](docs/anh/admin-so-do-phong.jpg)
 
-**Sơ đồ phòng.** Toàn bộ phòng hiển thị dạng ô theo từng khu, kèm tỉ lệ lấp đầy. Bấm vào một phòng là đổi trạng thái ngay, web công khai cập nhật theo. Các ô có dấu cảnh báo là phòng đang thiếu thông tin.
+**Người đang thuê** có tài khoản riêng để báo hỏng hoặc góp ý rồi theo dõi tới khi xong. Nếu sửa chữa có tốn tiền thì quản lý báo giá trước, cư dân đồng ý mới làm. Yêu cầu mới sẽ báo về Telegram của người quản lý.
 
-![Xử lý yêu cầu hỗ trợ](docs/anh/admin-ho-tro-cu-dan.jpg)
+![Xử lý yêu cầu của cư dân](docs/anh/admin-ho-tro-cu-dan.jpg)
 
-**Cư dân & yêu cầu hỗ trợ** (chung một trang, chia 2 tab). Cấp tài khoản cư dân bằng link kích hoạt dùng một lần. Xử lý yêu cầu theo quy trình *tiếp nhận → đang xử lý → báo phí → hoàn thành*: hẹn giờ thợ đến, báo chi phí sửa chữa (cư dân phải đồng ý mới làm), nhắn qua lại, có lịch sử đầy đủ. Mỗi yêu cầu mới đều báo cho quản lý qua **Telegram**.
+Cư dân chủ yếu dùng điện thoại nên phần này mình làm cho màn hình nhỏ trước:
 
-Ngoài ra còn các trang: quản lý khu và phòng, tải ảnh lên (tự nén sang WebP), danh sách khách chờ gọi lại, thống kê lượt truy cập ẩn danh.
+<p>
+  <img src="docs/anh/cong-cu-dan-mobile.jpg" width="32%" alt="Trang cư dân">
+  <img src="docs/anh/cu-dan-ho-tro-mobile.jpg" width="32%" alt="Danh sách yêu cầu">
+  <img src="docs/anh/cu-dan-gui-yeu-cau-mobile.jpg" width="32%" alt="Gửi yêu cầu">
+</p>
 
-### 3. Cổng cư dân — dành cho người đang thuê
+## Mấy chỗ mình mất công nhất
 
-<table>
-<tr>
-<td width="33%"><img src="docs/anh/cong-cu-dan-mobile.jpg" alt="Trang chính cổng cư dân"></td>
-<td width="33%"><img src="docs/anh/cu-dan-ho-tro-mobile.jpg" alt="Danh sách yêu cầu hỗ trợ"></td>
-<td width="33%"><img src="docs/anh/cu-dan-gui-yeu-cau-mobile.jpg" alt="Form gửi yêu cầu"></td>
-</tr>
-<tr>
-<td>Phòng đang ở, thông tin tài khoản, đổi mật khẩu</td>
-<td>Theo dõi yêu cầu đã gửi và tiến độ xử lý; tự khai hồ sơ liên hệ</td>
-<td>Gửi yêu cầu theo loại và mức độ; việc khẩn cấp được nhắc gọi hotline</td>
-</tr>
-</table>
+**Chuyển trang bị trắng màn hình.** Lúc mới đưa lên, bấm qua trang khác thì nội dung trống trơn, phải F5 mới hiện. Mình dò ra là do hiệu ứng cho nội dung hiện dần khi cuộn: nó ẩn nội dung đi rồi không bật lại sau khi đổi trang. Mình bỏ hẳn hiệu ứng đó, thêm cache dữ liệu và tải trước trang khi rê chuột vào link. Giờ bấm chuyển trang gần như hiện ngay.
 
-Cư dân có thể trả lời quản lý, **đồng ý hoặc từ chối chi phí** sửa chữa, hủy yêu cầu. Giao diện thiết kế cho điện thoại trước, vì cư dân chủ yếu dùng điện thoại.
+**Giới hạn đăng nhập sai bị qua mặt.** Mình có giới hạn 5 lần đăng nhập sai. Khi tự test lại, mình thấy chỉ cần gửi kèm một header giả IP là giới hạn này vô dụng. Mình sửa ở tầng Worker của Cloudflare, lấy IP thật do Cloudflare cung cấp chứ không tin header từ trình duyệt.
 
-> Ảnh trang quản lý và cổng cư dân chụp từ bản demo với dữ liệu giả, không chứa thông tin khách thật.
+**Người nhà cần đúng một chỗ để quản lý.** Bản đầu mình tách phần cư dân và phần hỗ trợ ra nhiều menu, người nhà thấy rối. Mình gộp lại thành một trang có 2 tab, việc gì cần làm thì hiện ngay ở dashboard.
 
----
+**Google hiện icon quả địa cầu thay vì logo.** Hóa ra đường dẫn `/favicon.ico` trả về trang HTML chứ không phải ảnh. Mình làm lại bộ favicon, thêm sitemap, tiêu đề và ảnh chia sẻ cho từng trang, giờ search "anlivingspaces" là ra đúng web.
 
-## Kiến trúc
+**Báo tin mà không tốn tiền.** Người nhà không muốn trả thêm phí hằng tháng cho việc nhắn tin, nên mình dùng bot Telegram (miễn phí) để báo yêu cầu mới cho người quản lý.
+
+## Công nghệ
+
+- Frontend: React 19, React Router, Vite, CSS tự viết
+- Backend: Node.js, Express 5, MongoDB (Mongoose), REST API
+- Đăng nhập: JWT cho admin; cư dân dùng cookie HttpOnly; mật khẩu băm bằng bcrypt
+- Chạy trên: Cloudflare Workers (web), Cloudflare Containers với Docker (backend), R2 (ảnh và bản sao lưu)
+- Test: 23 test API bằng `node:test`, test giao diện bằng Playwright
+
+Về bảo mật, ngoài chuyện giới hạn đăng nhập ở trên, web còn có header bảo mật (CSP, HSTS), kiểm tra nguồn request, link kích hoạt tài khoản chỉ dùng được một lần, và tự sao lưu database mỗi đêm (giữ 30 bản). Mình cũng viết trang Chính sách bảo mật và Điều khoản sử dụng; form nào thu số điện thoại đều có ô xin đồng ý.
 
 ```mermaid
 flowchart LR
-  K[Trình duyệt] -->|anlivingspaces.com| FE[Cloudflare Worker<br/>React SPA]
-  K -->|api.anlivingspaces.com| W[Worker API]
-  W -->|ảnh| R2[(R2)]
+  K[Trình duyệt] --> FE[Cloudflare Worker<br/>React]
+  K --> W[Worker API]
+  W --> R2[(R2: ảnh, sao lưu)]
   W --> C[Container Docker<br/>Express]
   C --> DB[(MongoDB Atlas)]
-  C -->|yêu cầu mới| TG[Telegram]
-  W -. cron 3:00 sáng .-> C -. sao lưu JSON .-> R2
+  C --> TG[Telegram]
 ```
 
-| Tầng | Công nghệ |
-|---|---|
-| Frontend | React 19, React Router 7, Vite, Axios, CSS thuần (responsive) |
-| Backend | Node.js 22, Express 5, Mongoose |
-| Cơ sở dữ liệu | MongoDB Atlas |
-| Xác thực | JWT (quản lý); phiên cookie HttpOnly + SameSite=Strict (cư dân); bcrypt |
-| Hạ tầng | Cloudflare Workers, Cloudflare Containers (**Docker**), Cloudflare R2 |
-| Kiểm thử | `node:test` + `mongodb-memory-server`, Playwright |
-| Tích hợp | Telegram Bot API, Google Maps |
+## Công cụ mình dùng
 
-## Bảo mật
+Giao diện mình phác ý tưởng bằng Google Stitch trước rồi mới code. Khi code mình dùng Claude và Codex để viết nhanh hơn, review và tìm lỗi. AI giúp mình làm nhanh, còn làm tính năng gì, thử lại trên web thật và sửa khi người nhà báo lỗi là việc của mình.
 
-- Mật khẩu băm bằng **bcrypt**. Link kích hoạt lưu dạng băm SHA-256, dùng một lần, hết hạn sau 48 giờ.
-- Phiên cư dân dùng cookie `HttpOnly`, `Secure`, `SameSite=Strict`, tiền tố `__Host-`. Mọi request thay đổi dữ liệu đều kiểm tra `Origin`. Đổi mật khẩu thì các phiên trên thiết bị khác bị thu hồi.
-- **Giới hạn tần suất** cho đăng nhập, form và API; sau khi đăng nhập thì tính riêng cho từng cư dân.
-- Worker ghi đè `X-Forwarded-For` bằng IP thật do Cloudflare cung cấp, để không ai giả IP vượt giới hạn đăng nhập được.
-- Header bảo mật: CSP, HSTS, X-Frame-Options. Trang quản lý và cổng cư dân không cho Google lập chỉ mục.
-- Chống sửa đè khi hai người cùng cập nhật một yêu cầu (optimistic concurrency).
-- Secrets chỉ nằm trong Cloudflare hoặc file `.env`, không bao giờ commit vào repo.
-- Sao lưu database tự động mỗi ngày, giữ 30 bản; script khôi phục đã chạy thử thành công.
+---
 
-## Cấu trúc thư mục
-
-```
-giao-dien/                 Frontend React (Vite)
-  src/trang/               Các trang công khai
-  src/admin/               Trang quản lý
-  src/cu-dan/              Cổng cư dân
-  src/thanh-phan/          Component dùng chung
-  src/dich-vu/             Gọi API + cache
-  src/du-lieu/             Cấu hình: liên hệ, bộ lọc, vị trí khu
-backend/                   API Express
-  src/routes/              Định tuyến: công khai, quản lý, cư dân, nội bộ
-  src/controllers/         Xử lý nghiệp vụ
-  src/models/              Mongoose schema
-  src/middleware/          Xác thực, giới hạn tần suất, xóa cache
-  src/utils/               Telegram, sao lưu, bảo mật phiên
-  worker.mjs               Cloudflare Worker: ảnh R2, cron sao lưu, chuyển tiếp vào container
-  kiem-thu/                Test API và test trình duyệt
-```
-
-## Công cụ & nền tảng đã dùng
-
-| Công cụ | Dùng để làm gì |
-|---|---|
-| **Google Stitch** | Phác thảo ý tưởng giao diện, bố cục các trang trước khi code |
-| **Claude** (Anthropic) | Trợ lý AI khi lập trình: viết và review code, tìm lỗi, viết test, kiểm tra giao diện |
-| **Codex** (OpenAI) | Trợ lý AI khi lập trình: phát triển và tối ưu một số tính năng (cổng cư dân, tải trước dữ liệu) |
-| **Cloudflare** | Chạy web (Workers), chạy backend bằng Docker (Containers), lưu ảnh và bản sao lưu (R2), tên miền và bảo mật |
-| **MongoDB Atlas** | Cơ sở dữ liệu trên đám mây |
-| **GitHub** | Quản lý mã nguồn |
-| **Google Search Console** | Đưa web lên Google, theo dõi lập chỉ mục |
-| **Telegram Bot** | Gửi thông báo yêu cầu mới cho quản lý |
-
-Các công cụ AI giúp tôi làm nhanh hơn; tôi là người quyết định tính năng, kiểm tra kết quả và chịu trách nhiệm vận hành web thật.
+Nguyễn Thanh Toàn · [github.com/ntoan64](https://github.com/ntoan64)
