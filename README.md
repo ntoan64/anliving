@@ -34,17 +34,24 @@ Cư dân chủ yếu dùng điện thoại nên phần này mình làm cho màn 
   <img src="docs/anh/cu-dan-gui-yeu-cau-mobile.jpg" width="32%" alt="Gửi yêu cầu">
 </p>
 
-## Mấy chỗ mình mất công nhất
+## Những vấn đề mình đã xử lý
 
-**Chuyển trang bị trắng màn hình.** Lúc mới đưa lên, bấm qua trang khác thì nội dung trống trơn, phải F5 mới hiện. Mình dò ra là do hiệu ứng cho nội dung hiện dần khi cuộn: nó ẩn nội dung đi rồi không bật lại sau khi đổi trang. Mình bỏ hẳn hiệu ứng đó, thêm cache dữ liệu và tải trước trang khi rê chuột vào link. Giờ bấm chuyển trang gần như hiện ngay.
+Trong quá trình làm và đưa website vào sử dụng thực tế, mình gặp khá nhiều vấn đề mà lúc code ban đầu không nghĩ tới. Có những lỗi chỉ xuất hiện sau khi deploy, cũng có những chỗ chỉ khi chủ nhà dùng thật mới thấy chưa hợp lý.
 
-**Giới hạn đăng nhập sai bị qua mặt.** Mình có giới hạn 5 lần đăng nhập sai. Khi tự test lại, mình thấy chỉ cần gửi kèm một header giả IP là giới hạn này vô dụng. Mình sửa ở tầng Worker của Cloudflare, lấy IP thật do Cloudflare cung cấp chứ không tin header từ trình duyệt.
+**Chuyển trang bị trắng màn hình**  
+Sau khi deploy, mình phát hiện mỗi lần chuyển sang trang khác thì nội dung đôi lúc bị trắng và phải F5 mới hiển thị lại. Nguyên nhân đến từ hiệu ứng scroll animation: nội dung đã bị ẩn nhưng không được kích hoạt lại sau khi đổi route. Mình bỏ hiệu ứng này và tối ưu thêm phần cache cùng preload dữ liệu, nhờ đó việc chuyển trang nhanh và ổn định hơn.
 
-**Chủ nhà cần đúng một chỗ để quản lý.** Bản đầu mình tách phần cư dân và phần hỗ trợ ra nhiều menu, chủ nhà thấy rối. Mình gộp lại thành một trang có 2 tab, việc gì cần làm thì hiện ngay ở dashboard.
+**Rate limit đăng nhập vẫn có thể bị bypass**  
+Ban đầu mình giới hạn số lần đăng nhập sai để chống brute-force. Khi tự test lại, mình phát hiện việc thay đổi header IP có thể làm cơ chế này mất tác dụng. Sau đó mình chuyển phần kiểm tra sang Cloudflare Worker và sử dụng IP do Cloudflare xác định thay vì tin trực tiếp dữ liệu từ phía client.
 
-**Google hiện icon quả địa cầu thay vì logo.** Hóa ra đường dẫn `/favicon.ico` trả về trang HTML chứ không phải ảnh. Mình làm lại bộ favicon, thêm sitemap, tiêu đề và ảnh chia sẻ cho từng trang, giờ search "anlivingspaces" là ra đúng web.
+**Tối giản khu vực quản lý cho chủ nhà**  
+Ở phiên bản đầu, mình chia các chức năng quản lý cư dân và hỗ trợ thành nhiều mục riêng. Khi chủ nhà sử dụng thử thì cách bố trí này hơi rối và mất thời gian tìm. Mình gộp các phần liên quan về cùng một màn hình, chia thành hai tab và đưa những việc cần xử lý lên dashboard để dễ theo dõi hơn.
 
-**Báo tin mà không tốn tiền.** Chủ nhà không muốn trả thêm phí hằng tháng cho việc nhắn tin, nên mình dùng bot Telegram (miễn phí) để báo yêu cầu mới cho người quản lý.
+**Hoàn thiện phần hiển thị trên Google**  
+Có một thời gian Google chỉ hiển thị icon quả địa cầu thay vì logo của website. Sau khi kiểm tra, mình phát hiện `/favicon.ico` đang trả về HTML thay vì file ảnh. Mình làm lại favicon, bổ sung sitemap, metadata và ảnh chia sẻ cho từng trang để website hiển thị đầy đủ hơn khi được tìm kiếm hoặc chia sẻ.
+
+**Thông báo yêu cầu mới mà không phát sinh thêm chi phí**  
+Chủ nhà cần biết ngay khi có yêu cầu mới nhưng không muốn sử dụng thêm một dịch vụ nhắn tin trả phí hàng tháng. Mình chọn Telegram Bot để gửi thông báo trực tiếp cho người quản lý. Cách này đơn giản, miễn phí và vẫn đáp ứng đúng nhu cầu sử dụng thực tế.
 
 ## Công nghệ
 
