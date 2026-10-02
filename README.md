@@ -1,8 +1,8 @@
 # AnLiving
 
-Đồ án mình đang hoàn thiện: web cho AnLiving, một bên cho thuê loft studio, studio, shophouse và văn phòng ở TP.HCM. Trước giờ khách hỏi phòng qua Zalo, cư dân báo hỏng cũng qua Zalo, nên thông tin hay bị trôi. Mình làm web này để gom hết về một chỗ, và hiện nó đang chạy thật tại [anlivingspaces.com](https://anlivingspaces.com).
+Dự án thực tế: web cho AnLiving, một bên cho thuê loft studio, studio, shophouse và văn phòng ở TP.HCM. Trước giờ khách hỏi phòng qua Zalo, cư dân báo hỏng cũng qua Zalo, nên thông tin hay bị trôi. Mình làm web này để gom hết về một chỗ, và hiện nó đang chạy thật tại [anlivingspaces.com](https://anlivingspaces.com).
 
-Mình làm từ lúc ngồi nghe chủ nhà kể cần gì, phác giao diện, viết frontend, backend, cho tới đưa lên mạng và sửa lỗi khi có người dùng thật. Mình làm được hơn 2 tuần và vẫn đang hoàn thiện thêm.
+Mình làm từ lúc ngồi nghe chủ nhà kể cần gì, phác giao diện, viết frontend, backend, cho tới đưa lên mạng và sửa lỗi khi có người dùng thật. Web vẫn đang được mình tiếp tục hoàn thiện.
 
 > Repo này mình để công khai để giới thiệu dự án. Code thật nằm ở repo riêng vì web đang chạy cho việc kinh doanh thật. Ai cần xem code thì nhắn mình, mình mở quyền hoặc demo trực tiếp.
 
