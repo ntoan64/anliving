@@ -4,7 +4,7 @@ Dự án thực tế: web cho AnLiving, một bên cho thuê loft studio, studio
 
 Mình làm từ lúc ngồi nghe chủ nhà kể cần gì, phác giao diện, viết frontend, backend, cho tới đưa lên mạng và sửa lỗi khi có người dùng thật. Web vẫn đang được mình tiếp tục hoàn thiện.
 
-> Repo này mình để công khai để giới thiệu dự án. Code thật nằm ở repo riêng vì web đang chạy cho việc kinh doanh thật. Ai cần xem code thì nhắn mình, mình mở quyền hoặc demo trực tiếp.
+> Repo này mình để công khai để giới thiệu dự án. Code thật nằm ở repo riêng vì web đang chạy cho việc kinh doanh thật. Bạn có thể vào [anlivingspaces.com](https://anlivingspaces.com) để dùng thử trực tiếp.
 
 ![Trang chủ](docs/anh/trang-chu.jpg)
 
