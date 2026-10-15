@@ -75,7 +75,7 @@ flowchart LR
 
 ## Công cụ mình dùng
 
-Mình thường phác thảo ý tưởng giao diện bằng Google Stitch trước để hình dung bố cục và trải nghiệm tổng thể, sau đó mới bắt đầu code.
+Giao diện mình phác thảo dựa trên ý tưởng và nhu cầu của chủ nhà: ngồi nghe họ kể khách hay hỏi gì, họ cần theo dõi việc gì mỗi ngày, rồi phác bố cục và cho họ xem trước khi bắt đầu code.
 
 Trong quá trình phát triển, mình sử dụng Claude và Codex để hỗ trợ viết code nhanh hơn, review logic và tìm lỗi. AI giúp mình rút ngắn thời gian xử lý, nhưng việc quyết định nên làm tính năng nào, kiểm tra lại trên website thực tế và chỉnh sửa dựa trên phản hồi của chủ nhà vẫn là phần mình trực tiếp thực hiện.
 
